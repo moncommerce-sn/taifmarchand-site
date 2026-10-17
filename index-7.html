@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TAÏF Marchand – gestion de boutique : stock, ventes, dettes</title>
+<meta name="description" content="TAÏF Marchand aide les commerçants du Sénégal à suivre leur stock, leurs ventes, leurs dettes et leurs dépenses depuis le téléphone. Essai gratuit de 7 jours.">
+<link rel="canonical" href="https://taifmarchand.com/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#14513c">
+<link rel="icon" type="image/png" sizes="32x32" href="https://app.taifmarchand.com/favicon-32.png">
+<link rel="apple-touch-icon" href="https://app.taifmarchand.com/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="TAÏF Marchand">
+<meta property="og:title" content="TAÏF Marchand – gestion de boutique : stock, ventes, dettes">
+<meta property="og:description" content="Suis ton stock, tes ventes, tes dettes et tes dépenses depuis ton téléphone. Essai gratuit de 7 jours.">
+<meta property="og:url" content="https://taifmarchand.com/">
+<meta property="og:image" content="https://app.taifmarchand.com/icon-512.png">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">
+[{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "TAÏF Marchand",
+  "alternateName": ["TAIF Marchand", "Taif Marchand"],
+  "url": "https://taifmarchand.com/"
+},{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TAÏF Marchand",
+  "alternateName": "TAIF Marchand",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Android, iOS, Web",
+  "inLanguage": "fr",
+  "description": "Application de gestion de boutique : stock, ventes, dettes clients et dépenses.",
+  "url": "https://taifmarchand.com/",
+  "offers": {
+    "@type": "Offer",
+    "price": "2000",
+    "priceCurrency": "XOF",
+    "description": "À partir de 2 000 F par mois, après 7 jours d'essai gratuit"
+  }
+}]
+</script>
+<style>
+:root{
+  --vert:#14513c;--vert-fonce:#0e3d2d;--or:#ffc31f;--or-fonce:#8a5a00;
+  --fond:#eff5f0;--encre:#12261d;--gris:#4f6358;--ligne:#d3dfd6;--blanc:#fff;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fond);color:var(--encre);
+  font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--vert)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--or);outline-offset:3px}
+.wrap{max-width:720px;margin:0 auto}
+.hero{background:linear-gradient(160deg,var(--vert),var(--vert-fonce));color:var(--blanc);padding:26px 20px 44px}
+.marque{display:flex;align-items:center;gap:12px}
+.marque svg{flex:none}
+.marque b{display:block;font-size:1.6rem;line-height:1;font-weight:800}
+.marque span{display:block;color:var(--or);font-weight:800;font-size:1.1rem;line-height:1.15}
+h1{font-size:clamp(1.9rem,7vw,2.9rem);line-height:1.08;font-weight:800;margin:34px 0 14px;max-width:15em}
+.intro{font-size:1.12rem;max-width:33em;margin:0 0 26px;color:#dcebe2}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 22px;
+  border-radius:14px;font-weight:700;font-size:1rem;text-decoration:none}
+.btn-or{background:var(--or);color:var(--encre)}
+.btn-ligne{border:2px solid rgba(255,255,255,.7);color:var(--blanc)}
+.btn-vert{background:var(--vert);color:var(--blanc)}
+.btn-vert-ligne{border:2px solid var(--vert);color:var(--vert)}
+.note{margin:16px 0 0;font-size:.95rem;color:#c3d9cc}
+.exemple{margin-top:34px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:22px;padding:16px;max-width:420px}
+.exemple h2{margin:0 0 12px;font-size:.95rem;font-weight:700;color:#dcebe2}
+.chiffres{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chiffres div{background:var(--blanc);color:var(--encre);border-radius:14px;padding:12px}
+.chiffres span{display:block;font-size:.85rem;color:var(--gris)}
+.chiffres b{display:block;font-size:1.35rem;font-weight:800;line-height:1.2}
+.exemple p{margin:10px 0 0;font-size:.85rem;color:#c3d9cc}
+section{padding:38px 20px}
+section + section{border-top:1px solid var(--ligne)}
+h2{font-size:1.55rem;line-height:1.2;margin:0 0 16px;font-weight:800}
+.liste{list-style:none;margin:0;padding:0}
+.liste li{padding:14px 0;border-top:1px solid var(--ligne)}
+.liste li:first-child{border-top:0;padding-top:0}
+.liste b{display:block;font-size:1.08rem}
+.liste span{color:var(--gris)}
+ol.etapes{margin:0;padding-left:1.3em}
+ol.etapes li{padding:6px 0 6px .3em}
+table{width:100%;border-collapse:collapse;background:var(--blanc);border-radius:14px;overflow:hidden;border:1px solid var(--ligne)}
+th,td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--ligne)}
+tr:last-child td{border-bottom:0}
+td:last-child,th:last-child{text-align:right;font-weight:800}
+caption{text-align:left;color:var(--gris);padding-bottom:10px}
+.prix-note{color:var(--gris);margin:14px 0 0}
+details{background:var(--blanc);border:1px solid var(--ligne);border-radius:14px;margin:0 0 10px}
+summary{cursor:pointer;padding:15px 16px;font-weight:700;list-style-position:inside}
+details p{margin:0;padding:0 16px 16px;color:var(--gris)}
+.contact p{margin:0 0 18px;max-width:32em}
+footer{padding:26px 20px 40px;color:var(--gris);font-size:.95rem;border-top:1px solid var(--ligne)}
+footer a{margin-right:16px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="marque">
+      <svg viewBox="0 0 48 40" width="46" height="38" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M2 6h6l5 21h22l5-15H11" stroke="#fff" stroke-width="3"/>
+        <circle cx="17" cy="34" r="2.6" fill="#fff"/><circle cx="32" cy="34" r="2.6" fill="#fff"/>
+        <path d="M16 20l7-6 5 4 9-9" stroke="#ffc31f" stroke-width="3"/><path d="M31 9h6v6" stroke="#ffc31f" stroke-width="3"/>
+      </svg>
+      <div><b>TAÏF</b><span>Marchand</span></div>
+    </div>
+
+    <h1>Ton stock, tes ventes et tes dettes, dans ton téléphone.</h1>
+    <p class="intro">TAÏF Marchand remplace le cahier : tu sais ce qu'il te reste en stock, ce que tu as vendu aujourd'hui et qui te doit de l'argent.</p>
+
+    <div class="actions">
+      <a class="btn btn-or" href="https://app.taifmarchand.com">Essayer 7 jours gratuitement</a>
+      <a class="btn btn-ligne" href="https://wa.me/221761911609?text=Bonjour%2C%20je%20veux%20en%20savoir%20plus%20sur%20TA%C3%8FF%20Marchand.">Écrire sur WhatsApp</a>
+    </div>
+    <p class="note">Ensuite, à partir de 2 000 F par mois. Tu paies seulement si tu continues.</p>
+
+    <div class="exemple" aria-label="Exemple d'écran Résumé">
+      <h2>Exemple d'écran Résumé</h2>
+      <div class="chiffres">
+        <div><span>Ventes du jour</span><b>125 000 FCFA</b></div>
+        <div><span>Bénéfice</span><b>42 500 FCFA</b></div>
+        <div><span>Dettes clients</span><b>38 000 FCFA</b></div>
+        <div><span>Produits en stock</span><b>48</b></div>
+      </div>
+      <p>Chiffres donnés en exemple.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <h2>Ce que tu gères avec TAÏF Marchand</h2>
+      <ul class="liste">
+        <li><b>Ton stock</b><span>Chaque produit avec son prix d'achat et son prix de vente. L'application te prévient quand un produit est bientôt fini.</span></li>
+        <li><b>Tes ventes</b><span>Enregistre une vente en quelques touches, au comptant ou à crédit. Scanne le code-barres ou cherche le produit par son nom.</span></li>
+        <li><b>Tes dettes clients</b><span>Retrouve qui te doit combien, et note chaque remboursement.</span></li>
+        <li><b>Tes dépenses et ton bénéfice</b><span>Note le transport, le loyer, l'électricité. Vois ton bénéfice du jour et du mois.</span></li>
+        <li><b>Tes vendeurs</b><span>Ajoute tes vendeurs : ils vendent sans voir tes prix d'achat.</span></li>
+        <li><b>Sans internet</b><span>Continue de vendre sans connexion : les ventes s'envoient quand le réseau revient.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Pour commencer</h2>
+      <ol class="etapes">
+        <li>Crée ton compte avec ton email.</li>
+        <li>Choisis l'essai gratuit de 7 jours.</li>
+        <li>Ajoute tes produits.</li>
+        <li>Vends, et suis tes chiffres chaque jour.</li>
+      </ol>
+      <p style="margin:20px 0 0"><a class="btn btn-vert" href="https://app.taifmarchand.com">Créer mon compte</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Prix</h2>
+      <table>
+        <caption>Après les 7 jours d'essai gratuit</caption>
+        <tbody>
+          <tr><td>1 mois</td><td>2 000 F</td></tr>
+          <tr><td>3 mois</td><td>5 000 F</td></tr>
+          <tr><td>6 mois</td><td>9 000 F</td></tr>
+          <tr><td>1 an</td><td>15 000 F</td></tr>
+        </tbody>
+      </table>
+      <p class="prix-note">Paiement par Wave ou Orange Money.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary>Comment installer l'application ?</summary>
+        <p>Ouvre app.taifmarchand.com dans Chrome sur ton téléphone, puis touche « Installer » ou « Ajouter à l'écran d'accueil ». Elle s'ouvre ensuite comme une application normale, avec son icône.</p>
+      </details>
+      <details>
+        <summary>Faut-il de l'internet ?</summary>
+        <p>Il faut une connexion pour ouvrir ton compte. Ensuite, tu peux enregistrer des ventes sans connexion : elles s'envoient quand le réseau revient.</p>
+      </details>
+      <details>
+        <summary>Comment payer mon abonnement ?</summary>
+        <p>Par Wave ou Orange Money. Après ton paiement, ton abonnement est activé.</p>
+      </details>
+      <details>
+        <summary>Que deviennent mes données si je m'arrête ?</summary>
+        <p>Elles restent dans ton compte. Si ton abonnement se termine, tu peux les consulter, mais tu ne peux plus vendre ni modifier, jusqu'à ce que tu te réabonnes.</p>
+      </details>
+      <details>
+        <summary>Mes données sont-elles protégées ?</summary>
+        <p>Tes données sont liées à ton compte et protégées par ton mot de passe. Pour plus de détails, lis notre <a href="https://app.taifmarchand.com/confidentialite.html">politique de confidentialité</a>.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div class="wrap">
+      <h2>Une question ?</h2>
+      <p>Écris-nous, nous te répondons et nous pouvons te montrer l'application en quelques minutes.</p>
+      <div class="actions">
+        <a class="btn btn-vert" href="https://wa.me/221761911609?text=Bonjour%2C%20je%20veux%20en%20savoir%20plus%20sur%20TA%C3%8FF%20Marchand.">Écrire sur WhatsApp</a>
+        <a class="btn btn-vert-ligne" href="mailto:taifmarchand@gmail.com">Envoyer un email</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 TAÏF Marchand</p>
+    <a href="https://app.taifmarchand.com/conditions.html">Conditions d'utilisation</a>
+    <a href="https://app.taifmarchand.com/confidentialite.html">Confidentialité</a>
+  </div>
+</footer>
+
+</body>
+</html>
