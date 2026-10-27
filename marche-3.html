@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marché TAÏF · Tous les produits des commerçants près de chez vous</title>
+<meta name="description" content="Cherchez un produit, comparez les boutiques de votre quartier et commandez directement sur WhatsApp.">
+<meta name="theme-color" content="#14513c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TAÏF Marchand">
+<meta property="og:title" content="🛒 Marché TAÏF · Les boutiques près de chez vous">
+<meta property="og:description" content="Cherchez un produit et commandez directement au commerçant sur WhatsApp.">
+<meta property="og:image" content="https://taifmarchand.com/og-boutique.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--g:#14513c;--g2:#0b3326;--a:#ffc31f;--bg:#f4f7f2;--card:#fff;--ink:#16231c;--mut:#5f7268;--ln:#dfe7e1;--wa:#1fa855;--px:#14513c;--chip:#eaf2ec}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.4 Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+.hd{background:var(--g);color:#fff;padding:calc(16px + env(safe-area-inset-top)) 16px 22px;border-radius:0 0 26px 26px}
+.w{max-width:1000px;margin:auto}
+.top{display:flex;align-items:center;gap:10px}
+.top img{width:44px;height:44px;border-radius:12px;background:#fff;object-fit:contain}
+.top a{color:#fff;text-decoration:none;font-weight:800;line-height:1.1}
+.top a small{display:block;color:var(--a);font-weight:700;font-size:.78rem}
+.top .bd{margin-left:auto}
+.bd{display:inline-block;background:var(--a);color:var(--g2);font-weight:800;font-size:.78rem;letter-spacing:.04em;border-radius:999px;padding:5px 12px}
+.hd h1{font-size:clamp(1.55rem,6.3vw,2.4rem);line-height:1.1;margin:16px 0 6px}
+.hd p{margin:0;color:#d5e6dc}
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);padding:12px 12px 4px}
+.bar input,.bar select{padding:12px 14px;border:1.5px solid var(--ln);border-radius:14px;font:inherit;background:var(--card);color:var(--ink);min-width:0}
+.bar input{width:100%}
+.row{display:flex;gap:8px;margin-top:8px}.row select{flex:1}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:10px 0 4px;scrollbar-width:none}
+.chips button{flex:none;border:1.5px solid var(--ln);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 13px;font:inherit;font-size:.88rem;cursor:pointer}
+.chips button.on{background:var(--g);border-color:var(--g);color:#fff}
+h2.t{font-size:1.05rem;margin:14px 14px 8px}
+.bq{display:flex;gap:10px;overflow-x:auto;padding:0 12px 6px;scrollbar-width:none}
+.bq button{flex:none;width:132px;text-align:left;border:1.5px solid var(--ln);background:var(--card);color:var(--ink);border-radius:16px;padding:10px;font:inherit;cursor:pointer}
+.bq button.on{border-color:var(--g);box-shadow:0 0 0 2px var(--g) inset}
+.bq .im{width:100%;aspect-ratio:1.4;border-radius:10px;background:#fff center/contain no-repeat;border:1px solid var(--ln);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.6rem;color:#14513c}
+.bq b{display:block;font-size:.88rem;margin-top:6px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.bq small{display:block;color:var(--mut);font-size:.75rem;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.filtre{display:flex;align-items:center;gap:8px;margin:4px 12px 0;padding:8px 12px;border-radius:12px;background:var(--chip);font-size:.88rem}
+.filtre button{margin-left:auto;border:0;background:none;color:var(--g);font:inherit;font-weight:700;cursor:pointer}
+.info{color:var(--mut);font-size:.85rem;padding:8px 14px}
+.gr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:4px 12px 16px}
+@media (min-width:560px){.gr{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}
+@media (min-width:860px){.gr{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.pr{background:var(--card);border:1px solid var(--ln);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.ph{aspect-ratio:1;width:100%;background:#fff center/contain no-repeat;border:0;border-bottom:1px solid var(--ln);display:flex;align-items:center;justify-content:center;font:800 2.2rem/1 inherit;color:#14513c;cursor:pointer;padding:0}
+.pb{padding:8px 10px 10px;display:flex;flex-direction:column;gap:3px;flex:1}
+.pb .nm{all:unset;cursor:pointer;font-weight:700;font-size:.9rem;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.px{font-size:1rem;font-weight:800;color:var(--px)}
+.sh{font-size:.78rem;color:var(--mut);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ok{color:#1fa855;font-weight:700}
+.rp{font-size:.78rem;color:#b8452a;font-weight:700}
+.cmd{margin-top:auto;border:0;border-radius:10px;padding:9px 6px;font:inherit;font-size:.88rem;font-weight:700;background:var(--wa);color:#fff;cursor:pointer}
+.cmd:disabled{background:#cfd8d2;color:#6b7b72}
+.plus[hidden]{display:none}
+.plus{display:block;margin:4px auto 20px;border:1.5px solid var(--g);background:transparent;color:var(--g);border-radius:14px;padding:12px 22px;font:inherit;font-weight:700;cursor:pointer}
+.vide{text-align:center;color:var(--mut);padding:40px 20px}
+.cta{margin:10px 12px 0;background:var(--card);border:1.5px dashed var(--ln);border-radius:18px;padding:16px;text-align:center}
+.cta a{display:inline-block;margin-top:8px;background:var(--g);color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:10px 18px}
+.ft{text-align:center;color:var(--mut);font-size:.85rem;padding:20px 16px}
+.ft a{color:var(--g);font-weight:700}
+/* Fiche produit */
+.fo{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center}
+.fo[hidden]{display:none}
+.fi{background:var(--card);width:100%;max-width:560px;max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:0 0 calc(16px + env(safe-area-inset-bottom))}
+.fi .big{width:100%;aspect-ratio:1;max-height:52vh;background:#fff center/contain no-repeat;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:4rem;color:#14513c;border-bottom:1px solid var(--ln);position:relative}
+.fi .x{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:20px;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:1.3rem;cursor:pointer}
+.fi .ct{padding:16px}
+.fi h3{margin:0 0 4px;font-size:1.3rem;line-height:1.2}
+.fi .px{font-size:1.4rem}
+.fi .cat{display:inline-block;margin-top:6px;background:var(--chip);border-radius:999px;padding:4px 10px;font-size:.8rem}
+.fi .bt{margin-top:14px;padding:12px;border:1px solid var(--ln);border-radius:14px}
+.fi .bt b{display:block}
+.fi .act{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.fi .act a,.fi .act button{display:block;text-align:center;border-radius:14px;padding:13px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer}
+.fi .cmd2{background:var(--wa);color:#fff;border:0}
+.fi .cmd2:disabled{background:#cfd8d2;color:#6b7b72}
+.fi .vb{border:1.5px solid var(--g);color:var(--g);background:transparent}
+.fi .sg{border:0;background:none;color:var(--mut);font-weight:400!important;text-decoration:underline!important;padding:6px!important;font-size:.85rem!important}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#0f1a15;--card:#17241d;--ink:#e7efe9;--mut:#9db0a5;--ln:#2a3a31;--px:#7fd1a3;--chip:#1f3128}
+  .cmd:disabled,.fi .cmd2:disabled{background:#2a3a31;color:#8a9a91}
+  .plus,.fi .vb{border-color:#7fd1a3;color:#7fd1a3}.ft a,.filtre button{color:#7fd1a3}
+  .bq button.on{border-color:#7fd1a3;box-shadow:0 0 0 2px #7fd1a3 inset}
+}
+</style>
+</head>
+<body>
+<header class="hd"><div class="w">
+  <div class="top"><img src="/logo.png" alt="" onerror="this.remove()"><a href="https://taifmarchand.com/">TAÏF Marchand<small>Votre commerce, plus simple</small></a><span class="bd">🛒 MARCHÉ</span></div>
+  <h1>Les boutiques près de chez vous</h1>
+  <p id="sous">Cherchez un produit et commandez directement au commerçant sur WhatsApp.</p>
+</div></header>
+<div class="bar"><div class="w">
+  <input id="q" type="search" placeholder="🔍 Riz, parfum, téléphone…" enterkeyhint="search">
+  <div class="row"><select id="ville" aria-label="Ville"><option value="">📍 Toutes les villes</option></select>
+    <select id="tri" aria-label="Trier"><option value="">⭐ Recommandés</option><option value="prix_asc">💰 Prix croissant</option><option value="prix_desc">💎 Prix décroissant</option></select></div>
+  <div class="chips" id="cats"></div>
+</div></div>
+<main class="w">
+  <section id="zb" hidden><h2 class="t">🏪 Les boutiques</h2><div class="bq" id="bq"></div></section>
+  <div class="filtre" id="fb" hidden></div>
+  <div class="info" id="info"></div>
+  <div class="gr" id="gr"></div>
+  <button class="plus" id="plus" hidden>Voir plus de produits</button>
+  <div class="cta">Vous êtes commerçant ? Mettez vos produits sur le Marché TAÏF.<br><a href="https://taifmarchand.com/">Essayer gratuitement 7 jours</a></div>
+</main>
+<div class="ft">Marché TAÏF · propulsé par <a href="https://taifmarchand.com/">TAÏF Marchand</a><br>Les commandes et paiements se font directement avec chaque commerçant.</div>
+<div class="fo" id="fo" hidden><div class="fi" id="fi" role="dialog" aria-modal="true"></div></div>
+<script>
+(function(){
+  const SB="https://kqfhbxzcixcdcjcsvkla.supabase.co",CLE="sb_publishable_gmcnPJ8EOrK0pcEnSZIH8w_FY_65XvF";
+  const $=id=>document.getElementById(id);
+  const h=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const nb=x=>Math.round(+x||0).toLocaleString("fr-FR").replace(/[\u202f\u00a0]/g," ");
+  const ini=n=>h(String(n||"?").trim().charAt(0).toUpperCase());
+  const rpc=(f,b)=>fetch(SB+"/rest/v1/rpc/"+f,{method:"POST",headers:{"Content-Type":"application/json",apikey:CLE,Authorization:"Bearer "+CLE},body:JSON.stringify(b||{})}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+  const u=new URLSearchParams(location.search);
+  let q=u.get("q")||"",cat=u.get("c")||"",ville=u.get("v")||"",tri=u.get("t")||"",bout=u.get("b")||"",page=0,liste=[],tour=0,BQ=[];
+  $("q").value=q;$("tri").value=tri;
+
+  async function filtres(){
+    try{
+      const f=await rpc("marche_filtres");
+      (f.villes||[]).forEach(v=>{const o=document.createElement("option");o.value=v;o.textContent="📍 "+v;$("ville").appendChild(o)});
+      $("ville").value=ville;
+      const cs=f.categories||[];
+      $("cats").innerHTML=cs.length?`<button data-c="" class="${cat?"":"on"}">Tout</button>`+cs.map(c=>`<button data-c="${h(c)}" class="${c===cat?"on":""}">${h(c)}</button>`).join(""):"";
+      $("cats").querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{cat=b.dataset.c;$("cats").querySelectorAll("[data-c]").forEach(x=>x.classList.toggle("on",x===b));chercher()});
+      if(f.boutiques)$("sous").textContent=f.boutiques+" boutique"+(f.boutiques>1?"s":"")+" · commandez directement sur WhatsApp.";
+    }catch(e){}
+  }
+  async function boutiques(){
+    try{BQ=await rpc("marche_boutiques",{p_ville:ville})||[]}catch(e){BQ=[]}
+    $("zb").hidden=!BQ.length;
+    $("bq").innerHTML=BQ.map(b=>`<button data-l="${h(b.lien)}" class="${b.lien===bout?"on":""}">
+      <span class="im" ${b.photo?`style="background-image:url('${h(b.photo)}')"`:""}>${b.photo?"":ini(b.nom)}</span>
+      <b>${h(b.nom)}${b.verifiee?' <span class="ok">✅</span>':""}</b>
+      <small>${h([b.quartier,b.ville].filter(Boolean).join(", ")||" ")}</small>
+      <small>${b.nb} produit${b.nb>1?"s":""}</small></button>`).join("");
+    $("bq").querySelectorAll("[data-l]").forEach(x=>x.onclick=()=>{bout=bout===x.dataset.l?"":x.dataset.l;boutiques();chercher();window.scrollTo({top:$("zb").offsetTop-90,behavior:"smooth"})});
+    filtreBout();
+  }
+  function filtreBout(){
+    const b=BQ.find(x=>x.lien===bout);
+    $("fb").hidden=!bout;
+    if(bout)$("fb").innerHTML=`🏪 <span>Produits de <b>${h(b?b.nom:bout)}</b></span><button id="fbx">Tout voir ✕</button>`;
+    const x=$("fbx");if(x)x.onclick=()=>{bout="";boutiques();chercher()};
+  }
+  function url(){
+    const p=new URLSearchParams();if(q)p.set("q",q);if(cat)p.set("c",cat);if(ville)p.set("v",ville);if(tri)p.set("t",tri);if(bout)p.set("b",bout);
+    history.replaceState(null,"",location.pathname+(p.toString()?"?"+p:""));
+  }
+  async function chercher(suite){
+    const t=++tour;
+    if(!suite){page=0;liste=[];$("gr").innerHTML="";$("info").textContent="Recherche…";}
+    url();filtreBout();
+    let r;
+    try{r=await rpc("marche_recherche",{p_q:q,p_categorie:cat,p_ville:ville,p_page:page,p_tri:tri,p_boutique:bout})}
+    catch(e){if(t===tour)$("info").innerHTML="Connexion impossible. Vérifiez internet puis <a href=\"\" onclick=\"location.reload();return false\">réessayez</a>.";return}
+    if(t!==tour)return;
+    liste=liste.concat(r||[]);
+    $("plus").hidden=(r||[]).length<40;
+    $("info").textContent=liste.length?(liste.length+((r||[]).length>=40?"+":"")+" produit"+(liste.length>1?"s":"")):"";
+    if(!liste.length){$("gr").innerHTML=`<div class="vide" style="grid-column:1/-1">Aucun produit trouvé${q?" pour « "+h(q)+" »":""}.<br>Essayez un autre mot ou une autre ville.</div>`;return}
+    $("gr").insertAdjacentHTML("beforeend",(r||[]).map(carte).join(""));
+    brancher();
+  }
+  function carte(p){
+    const lieu=[p.quartier,p.ville].filter(Boolean).join(", ");
+    return `<article class="pr" data-id="${h(p.id)}">
+      <button class="ph" data-f ${p.photo?`style="background-image:url('${h(p.photo)}')"`:""} aria-label="Voir ${h(p.nom)}">${p.photo?"":ini(p.nom)}</button>
+      <div class="pb"><button class="nm" data-f>${h(p.nom)}</button><span class="px">${nb(p.prix)} F</span>
+        <span class="sh">🏪 ${h(p.boutique||"Boutique")}${p.verifiee?' <span class="ok">✅</span>':""}</span>
+        ${lieu?`<span class="sh">📍 ${h(lieu)}</span>`:""}
+        ${p.dispo?"":`<span class="rp">Rupture de stock</span>`}
+        <button class="cmd" data-cmd ${p.dispo?"":"disabled"}>${p.dispo?"🟢 Commander":"Indisponible"}</button>
+      </div></article>`;
+  }
+  const commander=p=>{
+    const t="Bonjour "+(p.boutique||"")+" 👋\nJe voudrais commander : "+p.nom+" ("+nb(p.prix)+" F).\nEst-ce disponible ?\n\n(Vu sur le Marché TAÏF)";
+    location.href="https://wa.me/221"+p.wa+"?text="+encodeURIComponent(t);
+  };
+  async function signaler(p){
+    const m=prompt("Pourquoi signaler « "+p.nom+" » ? (arnaque, produit interdit, faux prix…)");
+    if(!m||m.trim().length<3)return;
+    try{const r=await rpc("marche_signaler",{p_produit:String(p.id),p_motif:m});
+      alert(r==="ok"?"Merci, votre signalement a été envoyé à l'équipe TAÏF.":r==="trop"?"Ce produit a déjà été signalé. Merci !":"Signalement impossible pour le moment.");}
+    catch(e){alert("Signalement impossible : vérifiez internet.")}
+  }
+  function fiche(p){
+    const lieu=[p.quartier,p.ville].filter(Boolean).join(", ");
+    $("fi").innerHTML=`<div class="big" ${p.photo?`style="background-image:url('${h(p.photo)}')"`:""}>${p.photo?"":ini(p.nom)}<button class="x" data-x aria-label="Fermer">✕</button></div>
+      <div class="ct"><h3>${h(p.nom)}</h3><div class="px">${nb(p.prix)} F${p.unite?` <span style="font-size:.85rem;font-weight:400;color:var(--mut)">/ ${h(p.unite)}</span>`:""}</div>
+        ${p.categorie?`<span class="cat">${h(p.categorie)}</span>`:""}
+        ${p.dispo?`<div class="ok" style="margin-top:8px">● Disponible</div>`:`<div class="rp" style="margin-top:8px">Rupture de stock</div>`}
+        <div class="bt"><b>🏪 ${h(p.boutique||"Boutique")}${p.verifiee?' <span class="ok">✅ Vérifiée</span>':""}</b>${lieu?`<span class="sh">📍 ${h(lieu)}</span>`:""}</div>
+        <div class="act">
+          <button class="cmd2" data-c ${p.dispo?"":"disabled"}>${p.dispo?"🟢 Commander sur WhatsApp":"Indisponible pour le moment"}</button>
+          <a class="vb" href="https://taifmarchand.com/boutique?b=${encodeURIComponent(p.lien)}">Voir toute la boutique</a>
+          <button class="sg" data-s>Signaler ce produit</button>
+        </div></div>`;
+    $("fo").hidden=false;document.body.style.overflow="hidden";
+    $("fi").querySelector("[data-x]").onclick=fermer;
+    $("fi").querySelector("[data-c]").onclick=()=>commander(p);
+    $("fi").querySelector("[data-s]").onclick=()=>signaler(p);
+  }
+  function fermer(){$("fo").hidden=true;document.body.style.overflow="";}
+  $("fo").onclick=e=>{if(e.target===$("fo"))fermer()};
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")fermer()});
+  function brancher(){
+    $("gr").querySelectorAll("article:not([data-ok])").forEach(a=>{
+      a.dataset.ok="1";const p=liste.find(x=>String(x.id)===a.dataset.id);if(!p)return;
+      a.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>fiche(p));
+      a.querySelector("[data-cmd]").onclick=()=>commander(p);
+    });
+  }
+  let att;
+  $("q").oninput=e=>{clearTimeout(att);att=setTimeout(()=>{q=e.target.value.trim();chercher()},400)};
+  $("ville").onchange=e=>{ville=e.target.value;boutiques();chercher()};
+  $("tri").onchange=e=>{tri=e.target.value;chercher()};
+  $("plus").onclick=()=>{page++;chercher(true)};
+  filtres();boutiques();chercher();
+})();
+</script>
+</body>
+</html>
