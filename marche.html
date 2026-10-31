@@ -125,6 +125,15 @@ h2.t{font-size:1.05rem;margin:14px 14px 8px}
   .bq button.on{border-color:#7fd1a3;box-shadow:0 0 0 2px #7fd1a3 inset}
 }
 </style>
+<!-- Meta Pixel Code (TAÏF Marché) — tes propres visites (?moi=1) ne sont pas suivies -->
+<script>
+try{if(!localStorage.getItem("tf-moi")){
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1844270266761716');fbq('track','PageView');}}catch(x){}
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <header class="hd"><div class="w">
@@ -159,6 +168,8 @@ h2.t{font-size:1.05rem;margin:14px 14px 8px}
   const stat=(e,l,p)=>{try{if(localStorage.getItem("tf-moi"))return;const k="st-"+e+"-"+(l||"")+"-"+(p||"")+"-"+new Date().toISOString().slice(0,10);
     if(e!=="clic_commande"){if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}
     fetch(SB+"/rest/v1/rpc/stat_evenement",{method:"POST",keepalive:true,headers:{"Content-Type":"application/json",apikey:CLE,Authorization:"Bearer "+CLE},body:JSON.stringify({p_evenement:e,p_lien:l||"",p_produit:p?String(p):""})}).catch(()=>{});}catch(x){}};
+  /* Pixel Meta : ouverture de fiche (ViewContent) et clic « Commander » (Lead), reliés au catalogue par l'id du produit */
+  const px=(ev,p)=>{try{if(window.fbq&&p&&p.id&&!localStorage.getItem("tf-moi"))fbq("track",ev,{content_ids:[String(p.id)],content_type:"product",content_name:String(p.nom||""),value:+(gros&&p.prix_gros?p.prix_gros:p.prix)||0,currency:"XOF"})}catch(x){}};
   const h=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const nb=x=>Math.round(+x||0).toLocaleString("fr-FR").replace(/[\u202f\u00a0]/g," ");
   const ini=n=>h(String(n||"?").trim().charAt(0).toUpperCase());
@@ -252,7 +263,7 @@ h2.t{font-size:1.05rem;margin:14px 14px 8px}
       </div></article>`;
   }
   const commander=p=>{
-    stat("clic_commande",p.lien,p.id);
+    stat("clic_commande",p.lien,p.id);px("Lead",p);
     const t=gros&&p.prix_gros
       ?"Bonjour "+(p.boutique||"")+"\nJe suis commerçant et je voudrais commander EN GROS : "+p.nom+" (prix de gros "+nb(p.prix_gros)+" F, minimum "+nb(p.qte_min||1)+").\nQuelle quantité est disponible et quel délai ?\n\n(Vu sur le Marché TAÏF · Gros)"
       :"Bonjour "+(p.boutique||"")+"\nJe voudrais commander : "+p.nom+" ("+nb(p.prix)+" F).\nEst-ce disponible ?\n\n(Vu sur le Marché TAÏF)";
@@ -278,6 +289,7 @@ h2.t{font-size:1.05rem;margin:14px 14px 8px}
     const lieu=lieuDe(p);
     const badge=gros&&p.prix_gros?"📦 GROS":p.verifiee?"✅ VÉRIFIÉE":"";
     const cmd=p.dispo?(gros&&p.prix_gros?"📦 Commander en gros":"🟢 Commander sur WhatsApp"):"Indisponible pour le moment";
+    px("ViewContent",p);
     $("fi").innerHTML=`<div class="gal">
         <div class="sl" id="sl">${imgs.length?imgs.map(u=>`<div class="sd" style="background-image:url('${h(u)}')"></div>`).join(""):`<div class="sd vide">${ini(e.grp?e.nom:p.nom)}</div>`}</div>
         ${badge?`<span class="bdg">${badge}</span>`:""}
