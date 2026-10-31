@@ -71,6 +71,15 @@ body{background:var(--bg);color:var(--ink);font:16px/1.4 Roboto,system-ui,-apple
   .ft a{color:#7fd1a3}
 }
 </style>
+<!-- Meta Pixel Code (TAÏF Marché) — tes propres visites (?moi=1) ne sont pas suivies -->
+<script>
+try{if(!localStorage.getItem("tf-moi")){
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1844270266761716');fbq('track','PageView');}}catch(x){}
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div id="app"><div class="msg"><div class="ic">🛍️</div><p>Chargement de la boutique…</p></div></div>
@@ -83,6 +92,10 @@ body{background:var(--bg);color:var(--ink);font:16px/1.4 Roboto,system-ui,-apple
   const stat=(e,l,p)=>{try{if(localStorage.getItem("tf-moi"))return;const k="st-"+e+"-"+(l||"")+"-"+(p||"")+"-"+new Date().toISOString().slice(0,10);
     if(e!=="clic_commande"){if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}
     fetch(SB+"/rest/v1/rpc/stat_evenement",{method:"POST",keepalive:true,headers:{"Content-Type":"application/json",apikey:CLE,Authorization:"Bearer "+CLE},body:JSON.stringify({p_evenement:e,p_lien:l||"",p_produit:p?String(p):""})}).catch(()=>{});}catch(x){}};
+  /* Pixel Meta */
+  const px=(ev,d)=>{try{if(window.fbq&&!localStorage.getItem("tf-moi"))fbq("track",ev,Object.assign({content_type:"product",currency:"XOF"},d))}catch(x){}};
+  /* Contacter le responsable (31/10/2026) */
+  const resp=()=>"https://wa.me/"+String(B.tel_resp||"").replace(/\D/g,"")+"?text="+encodeURIComponent("Bonjour, je vous contacte depuis la boutique "+(B.nom||"")+" sur TAÏF Marchand. J'ai envoyé une commande et je n'ai pas encore de réponse.");
   const h=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const nb=x=>Math.round(+x||0).toLocaleString("fr-FR").replace(/[\u202f\u00a0]/g," ");
   const lien=(new URLSearchParams(location.search).get("b")||"").trim().toLowerCase();
@@ -114,6 +127,10 @@ body{background:var(--bg);color:var(--ink);font:16px/1.4 Roboto,system-ui,-apple
         ${B.verifiee||B.depuis?`<p style="font-size:.88rem">${B.verifiee?"✅ Boutique vérifiée":""}${B.verifiee&&B.depuis?" · ":""}${B.depuis?"📅 Sur TAÏF depuis "+h(B.depuis):""}</p>`:""}
         ${(B.etiquettes||[]).length?`<p style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">${B.etiquettes.map(k=>({livraison_express:"⚡ Livraison express",paiement_livraison:"💵 Paiement à la livraison",echantillon:"🧪 Échantillon possible",personnalisable:"🎨 Personnalisable",garantie:"🛡️ Garantie",retour:"↩️ Retour accepté",livraison_gratuite:"🚚 Livraison gratuite",prix_negociable:"🤝 Prix négociable"})[k]).filter(Boolean).map(t=>`<span style="background:rgba(255,255,255,.14);border-radius:999px;padding:3px 10px;font-size:.8rem">${t}</span>`).join("")}</p>`:""}
       </div></header>
+      ${B.conditions||B.tel_resp?`<section class="w" style="padding:14px 16px 0;box-sizing:border-box"><div style="background:var(--card);border:1.5px solid var(--ln);border-radius:18px;padding:14px 16px">
+        ${B.conditions?`<b>📋 Conditions de la boutique</b><p style="margin:8px 0 0;white-space:pre-line;color:var(--ink)">${h(B.conditions)}</p>`:""}
+        ${B.tel_resp?`<p style="margin:${B.conditions?"12px":"0"} 0 0"><a href="${h(resp())}" target="_blank" rel="noopener" style="color:var(--wa);font-weight:700;text-decoration:none">📞 Pas de réponse ? Contacter le responsable</a></p>`:""}
+      </div></section>`:""}
       ${B.atelier&&(B.atelier.produits||B.atelier.capacite||(B.atelier.photos||[]).length)?`<section class="w atl">
         <h2>🏭 L'atelier${B.fabrique_sn?' <span class="sn2">🇸🇳 Fabriqué au Sénégal</span>':""}</h2>
         ${B.atelier.produits?`<p><b>Fabrication :</b> ${h(B.atelier.produits)}</p>`:""}
@@ -167,7 +184,9 @@ body{background:var(--bg);color:var(--ink);font:16px/1.4 Roboto,system-ui,-apple
         </div></article>`;}).join("")
       :`<p style="grid-column:1/-1;text-align:center;color:var(--mut)">${(B.produits||[]).length?"Aucun produit trouvé.":"Aucun produit en ligne pour le moment."}</p>`;
     gr.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{choix[b.dataset.mo]=b.dataset.v;grille()});
-    gr.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{panier[b.dataset.p]=(panier[b.dataset.p]||0)+1;grille()});
+    gr.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>{panier[b.dataset.p]=(panier[b.dataset.p]||0)+1;
+      const pr=(B.produits||[]).find(x=>String(x.id)===String(b.dataset.p));if(pr)px("AddToCart",{content_ids:[String(pr.id)],content_name:String(pr.nom||""),value:+pr.prix||0});
+      grille()});
     gr.querySelectorAll("[data-m]").forEach(b=>b.onclick=()=>{const k=b.dataset.m;panier[k]=(panier[k]||0)-1;if(panier[k]<=0)delete panier[k];grille()});
     barre();
   }
@@ -181,9 +200,28 @@ body{background:var(--bg);color:var(--ink);font:16px/1.4 Roboto,system-ui,-apple
   }
   function commander(){
     const l=lignes();if(!l.length)return;
+    if(!B.conditions)return envoyer(false);
+    /* Les conditions s'affichent avant l'envoi de la commande */
+    const o=document.createElement("div");
+    o.style.cssText="position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.55);display:flex;align-items:flex-end;justify-content:center";
+    o.innerHTML=`<div style="background:var(--card);color:var(--ink);width:100%;max-width:600px;max-height:88vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom));box-sizing:border-box">
+      <b style="font-size:1.15rem">📋 Avant de commander</b>
+      <p style="margin:6px 0 10px;color:var(--mut)">Voici les conditions de ${h(B.nom||"la boutique")} :</p>
+      <p style="margin:0 0 16px;white-space:pre-line;background:var(--bg);border-radius:14px;padding:12px 14px">${h(B.conditions)}</p>
+      <button data-ok style="width:100%;border:0;border-radius:14px;padding:15px;background:var(--wa);color:#fff;font:700 1rem Roboto,system-ui,sans-serif;cursor:pointer">🟢 J'ai lu, commander sur WhatsApp</button>
+      <button data-no style="width:100%;margin-top:8px;border:1.5px solid var(--ln);border-radius:14px;padding:13px;background:none;color:var(--ink);font:600 .95rem Roboto,system-ui,sans-serif;cursor:pointer">Retour</button>
+    </div>`;
+    o.onclick=e=>{if(e.target===o)o.remove()};
+    o.querySelector("[data-no]").onclick=()=>o.remove();
+    o.querySelector("[data-ok]").onclick=()=>{o.remove();envoyer(true)};
+    document.body.appendChild(o);
+  }
+  function envoyer(lu){
+    const l=lignes();if(!l.length)return;
     stat("clic_commande",lien,l.length===1?l[0].p.id:"");
     const tot=l.reduce((s,x)=>s+x.q*pu(x.p,x.q),0);
-    const txt="Bonjour "+(B.nom||"")+"\nJe voudrais commander :\n"+l.map(x=>"• "+x.q+" × "+x.p.nom+" ("+nb(pu(x.p,x.q))+" F)").join("\n")+"\nTotal : "+nb(tot)+" F\n\n(Commande envoyée depuis votre boutique TAÏF Marchand)";
+    const txt="Bonjour "+(B.nom||"")+"\nJe voudrais commander :\n"+l.map(x=>"• "+x.q+" × "+x.p.nom+" ("+nb(pu(x.p,x.q))+" F)").join("\n")+"\nTotal : "+nb(tot)+" F"+(lu?"\n✅ J'ai lu les conditions de la boutique.":"")+"\n\n(Commande envoyée depuis votre boutique TAÏF Marchand)";
+    px("Lead",{content_ids:l.map(x=>String(x.p.id)),contents:l.map(x=>({id:String(x.p.id),quantity:x.q})),num_items:l.reduce((s2,x)=>s2+x.q,0),value:tot});
     location.href="https://wa.me/221"+B.wa+"?text="+encodeURIComponent(txt+(l.length===1?"\n👉 https://p.taifmarchand.com/"+encodeURIComponent(l[0].p.id):""));
   }
   charger();
