@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tarifs TAÏF Marchand – à partir de 2 000 F par mois</title>
-<meta name="description" content="Prix de TAÏF Marchand : essai gratuit de 7 jours, puis 2 000 F par mois, 5 000 F les 3 mois, 9 000 F les 6 mois ou 15 000 F par an. Paiement Wave ou Orange Money.">
+<meta name="description" content="Prix de TAÏF Marchand : essai gratuit de 7 jours, puis 4 forfaits à partir de 2 000 F par mois (Boutique, Gestion, Complet, Pro). Paiement Wave ou Orange Money.">
 <link rel="canonical" href="https://taifmarchand.com/tarifs.html">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#14513c">
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="TAÏF Marchand">
 <meta property="og:title" content="Tarifs TAÏF Marchand – à partir de 2 000 F par mois">
-<meta property="og:description" content="Prix de TAÏF Marchand : essai gratuit de 7 jours, puis 2 000 F par mois, 5 000 F les 3 mois, 9 000 F les 6 mois ou 15 000 F par an. Paiement Wave ou Orange Money.">
+<meta property="og:description" content="Prix de TAÏF Marchand : essai gratuit de 7 jours, puis 4 forfaits à partir de 2 000 F par mois (Boutique, Gestion, Complet, Pro). Paiement Wave ou Orange Money.">
 <meta property="og:url" content="https://taifmarchand.com/tarifs.html">
 <meta property="og:image" content="https://taifmarchand.com/logo.png">
 <style>
@@ -95,6 +95,24 @@ footer a{margin-right:16px}
 .carte{background:var(--blanc);border:1px solid var(--ligne);border-radius:16px;padding:18px;margin:0 0 14px}
 .carte h3{margin:0 0 6px;font-size:1.15rem}
 .carte p{margin:0;color:var(--gris)}
+.forfaits{display:grid;gap:14px}
+@media(min-width:640px){.forfaits{grid-template-columns:1fr 1fr}}
+.forfait{position:relative;background:var(--blanc);border:2px solid var(--ligne);border-radius:18px;padding:20px 18px}
+.forfait.reco{border-color:var(--vert)}
+.forfait .badge{position:absolute;top:-12px;left:16px;background:var(--or);color:var(--encre);font-size:.8rem;font-weight:800;padding:3px 12px;border-radius:99px}
+.forfait h3{margin:0;font-size:1.3rem}
+.forfait .pour{margin:2px 0 10px;color:var(--gris)}
+.forfait .prix{font-size:1.9rem;font-weight:800;line-height:1.1}
+.forfait .prix small{font-size:1rem;font-weight:600;color:var(--gris)}
+.forfait ul{margin:12px 0 0;padding-left:1.2em}
+.forfait li{padding:3px 0}
+.forfait li.bientot{color:var(--gris)}
+.tout-prix{margin:18px 0 0}
+.tout-prix table{margin:0 0 16px}
+.tout-prix th{font-size:.9rem;color:var(--gris);font-weight:700}
+.tout-prix td,.tout-prix th{padding:10px 12px}
+.tout-prix td:not(:first-child),.tout-prix th:not(:first-child){text-align:right}
+.defile{overflow-x:auto}
 </style>
 </head>
 <body>
@@ -103,40 +121,95 @@ footer a{margin-right:16px}
     <a class="mini" href="/"><img src="/logo.png" alt="TAÏF Marchand" width="52" height="52"><b>TAÏF Marchand</b></a>
     <nav class="nav" aria-label="Menu"><a href="/tarifs.html" aria-current="page">Tarifs</a><a href="/installer.html">Installer</a><a href="/questions.html">Questions</a><a href="/contact.html">Contact</a></nav>
     <h1>Les tarifs de TAÏF Marchand</h1>
-    <p class="intro">Commence par 7 jours d'essai gratuit. Ensuite, choisis la durée qui te convient.</p>
+    <p class="intro">À partir de <b>2 000 F par mois</b>. Commence par 7 jours d'essai gratuit avec toutes les fonctions, puis choisis le forfait qui correspond à ton commerce.</p>
+    <div class="actions"><a class="btn btn-or" href="https://app.taifmarchand.com">Essayer 7 jours gratuitement</a></div>
   </div>
 </header>
 <main>
   <section>
     <div class="wrap">
-      <h2>Après l'essai gratuit</h2>
-      <table>
-        <caption>Toutes les fonctions sont incluses, quelle que soit la durée</caption>
-        <tbody>
-          <tr><td>1 mois</td><td>2 000 F</td></tr>
-          <tr><td>3 mois</td><td>5 000 F</td></tr>
-          <tr><td>6 mois</td><td>9 000 F</td></tr>
-          <tr><td>1 an</td><td>15 000 F</td></tr>
-        </tbody>
-      </table>
-      <p class="prix-note">Plus la durée est longue, moins tu paies par mois : 1 an revient à 1 250 F par mois.</p>
+      <h2>4 forfaits, selon ton commerce</h2>
+      <div class="forfaits">
+        <article class="forfait">
+          <h3>🛍️ Boutique</h3>
+          <p class="pour">Pour vendre en ligne</p>
+          <div class="prix">2 000 F <small>/ mois</small></div>
+          <ul>
+            <li>Ta boutique en ligne avec photos et prix</li>
+            <li>Tes produits sur le Marché TAÏF</li>
+            <li>Les commandes arrivent sur ton WhatsApp</li>
+            <li>Jusqu'à 50 produits</li>
+          </ul>
+        </article>
+        <article class="forfait">
+          <h3>📒 Gestion</h3>
+          <p class="pour">Pour gérer ton commerce</p>
+          <div class="prix">2 500 F <small>/ mois</small></div>
+          <ul>
+            <li>Ventes, stock, dettes clients et dépenses</li>
+            <li>Ton gain calculé chaque jour</li>
+            <li>Historique et factures sur WhatsApp</li>
+            <li>Jusqu'à 200 produits · 1 utilisateur</li>
+          </ul>
+        </article>
+        <article class="forfait reco">
+          <span class="badge">Recommandé</span>
+          <h3>⭐ Complet</h3>
+          <p class="pour">Boutique en ligne + gestion</p>
+          <div class="prix">4 000 F <small>/ mois</small></div>
+          <ul>
+            <li>Tout le forfait Boutique</li>
+            <li>Tout le forfait Gestion</li>
+            <li>Jusqu'à 200 produits</li>
+            <li>1 vendeur en plus de toi : il vend sans voir tes prix d'achat</li>
+          </ul>
+        </article>
+        <article class="forfait">
+          <h3>🚀 Pro</h3>
+          <p class="pour">Pour les gros commerçants et les grossistes</p>
+          <div class="prix">9 000 F <small>/ mois</small></div>
+          <ul>
+            <li>Tout le Complet, sans limite de produits</li>
+            <li>Vendeurs illimités</li>
+            <li>Mode Grossiste sur le Marché TAÏF : prix de gros et quantité minimum</li>
+            <li class="bientot">Mise en avant sur le Marché (bientôt)</li>
+            <li class="bientot">Rapport du soir automatique (bientôt)</li>
+          </ul>
+        </article>
+      </div>
+      <p class="prix-note">Paie pour 3 mois, 6 mois ou 1 an et économise : avec l'abonnement d'un an, tu paies <b>plus de 35 % de moins</b>. Par exemple, le Complet sur 1 an revient à 2 500 F par mois.</p>
+      <details class="tout-prix">
+        <summary>Voir tous les prix (1, 3, 6 et 12 mois)</summary>
+        <div class="defile">
+          <table>
+            <thead><tr><th>Forfait</th><th>1 mois</th><th>3 mois</th><th>6 mois</th><th>1 an</th></tr></thead>
+            <tbody>
+              <tr><td>Boutique</td><td>2 000 F</td><td>5 000 F</td><td>9 000 F</td><td>15 000 F</td></tr>
+              <tr><td>Gestion</td><td>2 500 F</td><td>6 000 F</td><td>11 000 F</td><td>18 500 F</td></tr>
+              <tr><td>Complet</td><td>4 000 F</td><td>10 000 F</td><td>18 000 F</td><td>30 000 F</td></tr>
+              <tr><td>Pro</td><td>9 000 F</td><td>22 500 F</td><td>40 000 F</td><td>67 500 F</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
       <p style="margin:20px 0 0"><a class="btn btn-vert" href="https://app.taifmarchand.com">Essayer 7 jours gratuitement</a></p>
     </div>
   </section>
   <section>
     <div class="wrap">
-      <h2>Ce qui est inclus</h2>
+      <h2>Dans tous les forfaits</h2>
       <ul class="liste">
-        <li><b>Stock, ventes, dettes et dépenses</b><span>Toutes les fonctions de l'application, sans option payante en plus.</span></li>
-        <li><b>Tes vendeurs</b><span>Ajoute tes vendeurs : ils vendent sans voir tes prix d'achat.</span></li>
+        <li><b>7 jours d'essai gratuit</b><span>Toutes les fonctions sont ouvertes pendant l'essai, sans payer.</span></li>
         <li><b>Sans internet</b><span>Continue de vendre sans connexion : les ventes s'envoient quand le réseau revient.</span></li>
+        <li><b>Tu changes de forfait quand tu veux</b><span>Commence petit, puis passe au forfait supérieur quand ton commerce grandit.</span></li>
+        <li><b>Tes données sont gardées</b><span>Rien n'est supprimé si tu changes de forfait ou si ton abonnement se termine.</span></li>
       </ul>
     </div>
   </section>
   <section>
     <div class="wrap">
       <h2>Comment payer ?</h2>
-      <p>Par <b>Wave</b> ou <b>Orange Money</b>. Après ton paiement, ton abonnement est activé.</p>
+      <p>Par <b>Wave</b> ou <b>Orange Money</b>, directement dans l'application. Ton abonnement s'active tout seul dès que le paiement est confirmé.</p>
       <p>Si ton abonnement se termine, tes données restent dans ton compte : tu peux les consulter, et tu reprends là où tu en étais dès que tu te réabonnes.</p>
     </div>
   </section>
