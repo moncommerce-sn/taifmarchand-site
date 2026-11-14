@@ -288,7 +288,7 @@ fbq('init','1844270266761716');fbq('track','PageView');}}catch(x){}
     const mot=cat==="evenements"?" formule":" produit";
     $("info").textContent=vis.length?(vis.length+((r||[]).length>=80?"+":"")+mot+(vis.length>1?"s":"")):"";
     if(!vis.length&&liste.length){$("gr").innerHTML=`<div class="vide" style="grid-column:1/-1">Aucun prestataire dans ce métier pour le moment.<br>Essayez un autre métier ou une autre ville.</div>`;return}
-    if(!liste.length){$("gr").innerHTML=`<div class="vide" style="grid-column:1/-1">Aucun produit trouvé${q?" pour « "+h(q)+" »":""}.<br>Essayez un autre mot ou une autre ville.</div>`;return}
+    if(!liste.length){$("gr").innerHTML=`<div class="vide" style="grid-column:1/-1">${gros&&!q&&!ville&&!cat?`📦 Pas encore de grossiste sur le Marché TAÏF.<br><b>Vous êtes grossiste ?</b> Activez le mode Grossiste avec le forfait Pro.<br><a href="https://taifmarchand.com/ouvrir-boutique" style="display:inline-block;margin-top:10px;font-weight:800">Ouvrir ma boutique</a>`:`Aucun produit trouvé${q?" pour « "+h(q)+" »":""}.<br>Essayez un autre mot ou une autre ville.`}</div>`;return}
     VUE=grouper(vis);
     $("gr").innerHTML=VUE.map(carte).join("");
     brancher();
