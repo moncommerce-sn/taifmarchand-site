@@ -150,6 +150,13 @@ fbq('init','1844270266761716');fbq('track','PageView');}}catch(x){}
   const stat=(e,l,p)=>{try{if(localStorage.getItem("tf-moi"))return;const k="st-"+e+"-"+(l||"")+"-"+(p||"")+"-"+new Date().toISOString().slice(0,10);
     if(e!=="clic_commande"){if(sessionStorage.getItem(k))return;sessionStorage.setItem(k,"1");}
     fetch(SB+"/rest/v1/rpc/stat_evenement",{method:"POST",keepalive:true,headers:{"Content-Type":"application/json",apikey:CLE,Authorization:"Bearer "+CLE},body:JSON.stringify({p_evenement:e,p_lien:l||"",p_produit:p?String(p):""})}).catch(()=>{});}catch(x){}};
+
+  /* Commandes reçues (15/11/2026) : enregistre la commande et renvoie son numéro (1, 2, 3… par boutique) */
+  let cmdEnCours=false;
+  const cmdNum=o=>new Promise(r=>{let f=0;const fin=v=>{if(!f){f=1;clearTimeout(t);r(v)}},t=setTimeout(()=>fin(null),2500);
+    try{fetch(SB+"/rest/v1/rpc/commande_creer",{method:"POST",headers:{"Content-Type":"application/json",apikey:CLE,Authorization:"Bearer "+CLE},body:JSON.stringify(o)})
+      .then(x=>x.ok?x.json():null).then(n=>fin(typeof n==="number"?n:null)).catch(()=>fin(null));}catch(x){fin(null)}});
+  const noCmd=n=>n?"\n🧾 Commande n° "+n:"";
   /* Pixel Meta */
   const px=(ev,d)=>{try{if(window.fbq&&!localStorage.getItem("tf-moi"))fbq("track",ev,Object.assign({content_type:"product",currency:"XOF"},d))}catch(x){}};
   /* Contacter le responsable (31/10/2026) */
@@ -197,7 +204,7 @@ fbq('init','1844270266761716');fbq('track','PageView');}}catch(x){}
     document.body.appendChild(o);
     const q=x=>o.querySelector(x);
     q("[data-no]").onclick=()=>o.remove();
-    q("[data-ok]").onclick=()=>{
+    q("[data-ok]").onclick=async()=>{
       const d=q("[data-dt]").value;
       if(!d){const e=q("[data-er]");e.textContent="Choisissez la date de l'événement.";e.hidden=false;return}
       const dl=new Date(d+"T12:00:00").toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
@@ -206,9 +213,12 @@ fbq('init','1844270266761716');fbq('track','PageView');}}catch(x){}
       px("Lead",{content_ids:[String(p.id)],content_name:String(p.nom||""),value:+p.prix||0});
       const t="Bonjour "+(B.nom||"")+"\nJe voudrais réserver : "+p.nom+" ("+prixS(p)+").\n📅 Date : "+dl+"\n🎉 Événement : "+q("[data-ty]").value
         +(n?"\n👥 Invités : environ "+n:"")+(li?"\n📍 Lieu : "+li:"")+(B.conditions?"\n✅ J'ai lu les conditions.":"")
-        +"\nÊtes-vous disponible ?\n\n(Envoyé depuis votre boutique TAÏF Marchand)\n👉 https://p.taifmarchand.com/"+encodeURIComponent(p.id);
+        +"\nÊtes-vous disponible ?\n\n(Envoyé depuis votre boutique TAÏF Marchand)";
+      if(cmdEnCours)return;cmdEnCours=true;
+      const nc=await cmdNum({p_lien:lien,p_articles:"Réservation : "+p.nom,p_total:+p.prix||0,p_produit:String(p.id),p_type:"reservation",p_source:"boutique",p_details:"Date : "+dl+" · "+q("[data-ty]").value+(n?" · "+n+" invités":"")+(li?" · "+li:"")});
+      cmdEnCours=false;
       o.remove();
-      location.href="https://wa.me/221"+B.wa+"?text="+encodeURIComponent(t);
+      location.href="https://wa.me/221"+B.wa+"?text="+encodeURIComponent(t+noCmd(nc)+"\n👉 https://p.taifmarchand.com/"+encodeURIComponent(p.id));
     };
   }
 
@@ -357,14 +367,17 @@ fbq('init','1844270266761716');fbq('track','PageView');}}catch(x){}
     document.body.appendChild(o);
   }
   window.addEventListener("pageshow",()=>{try{if(sessionStorage.getItem("tf-cmd"))apresCmd()}catch(x){}});
-  function envoyer(lu){
-    const l=lignes();if(!l.length)return;
+  async function envoyer(lu){
+    const l=lignes();if(!l.length||cmdEnCours)return;
     stat("clic_commande",lien,l.length===1?l[0].p.id:"");
     const tot=l.reduce((s,x)=>s+x.q*pu(x.p,x.q),0);
     const txt="Bonjour "+(B.nom||"")+"\nJe voudrais commander :\n"+l.map(x=>"• "+x.q+" × "+x.p.nom+" ("+nb(pu(x.p,x.q))+" F)").join("\n")+"\nTotal : "+nb(tot)+" F"+(lu?"\n✅ J'ai lu les conditions de la boutique.":"")+"\n\n(Commande envoyée depuis votre boutique TAÏF Marchand)";
     px("Lead",{content_ids:l.map(x=>String(x.p.id)),contents:l.map(x=>({id:String(x.p.id),quantity:x.q})),num_items:l.reduce((s2,x)=>s2+x.q,0),value:tot});
+    cmdEnCours=true;
+    const nc=await cmdNum({p_lien:lien,p_articles:l.map(x=>x.q+" × "+x.p.nom).join(", "),p_total:tot,p_produit:l.length===1?String(l[0].p.id):null,p_type:l.length>1?"panier":"commande",p_source:"boutique"});
+    cmdEnCours=false;
     try{sessionStorage.setItem("tf-cmd","1")}catch(x){}
-    location.href="https://wa.me/221"+B.wa+"?text="+encodeURIComponent(txt+(l.length===1?"\n👉 https://p.taifmarchand.com/"+encodeURIComponent(l[0].p.id):""));
+    location.href="https://wa.me/221"+B.wa+"?text="+encodeURIComponent(txt+noCmd(nc)+(l.length===1?"\n👉 https://p.taifmarchand.com/"+encodeURIComponent(l[0].p.id):""));
   }
   charger();
 })();
